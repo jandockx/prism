@@ -3,3 +3,6 @@ node_modules
 .idea/
 .DS_Store
 yarn.lock
+plugins/eval/codeNotShown.min.js
+plugins/eval/errorExample.min.js
+plugins/eval/example.min.js
