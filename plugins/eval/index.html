@@ -473,8 +473,11 @@ prismEvalTest.codeShouldNotBeExecuted("will not be reached (in html)");
 <script>
   setTimeout(
       function() {
-        console.log("executed: " + prismEvalTest.executed.join("; "));
         var expectedExecuted = 22;
+        console.log("executed:");
+        prismEvalTest.executed.forEach(function(exd, index) {
+          console.log(index + ": " + exd);
+        });
         if (prismEvalTest.executed.length !== expectedExecuted) {
           console.error("executed " + prismEvalTest.executed.length + ", but expected " + expectedExecuted);
         }
