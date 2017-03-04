@@ -40,11 +40,11 @@ prismEvalTest.codeExecuted("first example");
 
 <p>This is how it looks in HTML-source:</p>
 
-<pre><code class="language-html" data-eval="true">
+<pre class="language-html">
 &lt;pre&gt;&lt;code class="language-javascript" data-eval="true"&gt;
 prismEvalTest.codeExecuted("first example");
 5 + 6;
-&lt;/code>&lt;/pre&gt;</code></pre>
+&lt;/code>&lt;/pre&gt;</pre>
 
 <p>Ideal to explain your JavaScript code, or to do a kind of
 	<a href="https://en.wikipedia.org/wiki/Literate_programming" target="_blank">literate programming.</a></p>
@@ -343,7 +343,7 @@ prismEvalTest.codeShouldNotBeExecuted("will not be reached (in html)");
 	<a href="plugins/file-highlight/">File Highlight</a> plugin.
 	<em>Note that <a href="plugins/file-highlight/">File Highlight</a> only works when the files are
 	loaded over HTTP and HTTPS, and not, e.g., when files are loaded from the file system with
-		<code class="language-lala">file://…</codeclass>.</code></em>
+		<code class="language-lala">file://…</code>.</em>
   The plugin first adds the text <q>Loading…</q>. Execution would fail
   on that, as it is not JavaScript. Therefor, if the code to be executed is exactly
   <code class="language-javascript">"Loading…"</code>, this plugin will not evaluate
