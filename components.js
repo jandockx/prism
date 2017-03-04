@@ -681,6 +681,10 @@ var components = {
 			"owner": "mAAdhaTTah",
 			"require": "toolbar",
 			"noCSS": true
+		},
+		"eval": {
+			"title": "eval",
+			"owner": "jandockx"
 		}
 	}
 };
