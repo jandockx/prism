@@ -22,6 +22,7 @@ div.prism-eval-output {
 	border-left: 10px solid #0c1e2e;
 	display: block;
 	overflow: visible;
+	min-height: 1em;
 	max-height: 30em;
 	padding: 0;
 	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
@@ -55,8 +56,8 @@ span.prism-eval-output {
 	padding: .2em;
 	border-radius: .3em;
 	border: 1px solid rgba(0, 0, 0, 0.1);
-	display: inline;
-	min-width: 30px;
+	display: inline; /* not an inline-block, because we want wrapping */
+	/* cannot specify a minimum width on a span */
 }
 
 .prism-eval-log,
