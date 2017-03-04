@@ -341,6 +341,9 @@ prismEvalTest.codeShouldNotBeExecuted("will not be reached (in html)");
 
 <p>Evaluation also works with code included with the Prism
 	<a href="plugins/file-highlight/">File Highlight</a> plugin.
+	<em>Note that <a href="plugins/file-highlight/">File Highlight</a> only works when the files are
+	loaded over HTTP and HTTPS, and not, e.g., when files are loaded from the file system with
+		<code class="language-lala">file://…</codeclass>.</code></em>
   The plugin first adds the text <q>Loading…</q>. Execution would fail
   on that, as it is not JavaScript. Therefor, if the code to be executed is exactly
   <code class="language-javascript">"Loading…"</code>, this plugin will not evaluate
@@ -373,13 +376,28 @@ prismEvalTest.codeShouldNotBeExecuted("will not be reached (in html)");
   <code class="language-html">id=&quot;prism-eval-output&quot;</code>.
   We cannot diversify here. You have to add such element yourself. It will not be created (this plugin
   doesn't know where you want it if there are more scripts to execute). As a consequence, the output
-  of the next included code is shown in the same output element below.</p>
-
-<p>The result of the script
-	(<code class="language-javascript">5 + 6</code>) cannot be shown.</p>
-
+	of the next included code is shown in the same output element below. The order in which the output
+	of different scripts is presented in this one element, is undefined. We cannot control in which order
+  multiple scripts are executed.</p>
 
 <div id="prism-eval-output"></div>
+
+<p>The above evaluation
+  produces <code class="language-javascript">external code</code>.
+  <code class="language-javascript">"will be shown in a labeled, general output element"</code>
+  is not shown, because it is labelled.
+  <code class="language-javascript">will throw an error (external code)</code> is the output
+  of the next example. The result of the script
+  (<code class="language-javascript">5 + 6</code>) cannot be shown.</p>
+
+<p>With script execution, only text <code class="language-javascript">str</code> that is used as argument in a
+	call to
+  <code class="language-javascript">Prism.eval.log(str)</code>,
+  <code class="language-javascript">Prism.eval.info(str)</code>,
+  <code class="language-javascript">Prism.eval.warn(str)</code>, or
+  <code class="language-javascript">Prism.eval.error(str)</code> in the script, can be displayed.
+  This means the script must be aware of this plugin. This plugin thus cannot be used with legacy
+	scripts.</p>
 
 <p>Labeled output also works for scripts, by appending the label to
   <code class="language-html">prism-eval-output</code>, like so:
@@ -392,8 +410,12 @@ prismEvalTest.codeShouldNotBeExecuted("will not be reached (in html)");
 
 <pre data-src="plugins/eval/errorExample.js" data-eval="script"></pre>
 
-<p>The following output is created by a script that is included in a
-  <code class="language-html">&lt;script&gt;</code>-tag, but not shown by Prism.
+<p>The output <code class="language-javascript">will throw an error (external code)</code> is shown in the one
+	element with <code class="language-html">id=&quot;prism-eval-output&quot;</code> used above.</p>
+
+<p>Finally, the following output is created by a script that is included in a
+  <code class="language-html">&lt;script&gt;</code>-tag in this page, that uses
+	<code class="language-javascript">Prism.eval.warn(str)</code>, but that is not shown by Prism.
   That works also.</p>
 
 <div id="prism-eval-output-notShownByPrism"></div>
