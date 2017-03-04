@@ -415,7 +415,7 @@ prismEvalTest.codeShouldNotBeExecuted("will not be reached (in html)");
 
 <p>Finally, the following output is created by a script that is included in a
   <code class="language-html">&lt;script&gt;</code>-tag in this page, that uses
-	<code class="language-javascript">Prism.eval.warn(str)</code>, but that is not shown by Prism.
+	<code class="language-javascript">Prism.eval.log(str)</code> (indirectly), but that is not shown by Prism.
   That works also.</p>
 
 <div id="prism-eval-output-notShownByPrism"></div>
@@ -447,7 +447,7 @@ prismEvalTest.codeShouldNotBeExecuted("will not be reached (in html)");
     shouldNotBeExecuted: [],
     codeExecuted: function (label) {
       this.executed.push(label);
-      Prism.eval.log(label);
+      Prism.eval.log.apply(Prism.eval, arguments);
     },
     codeShouldNotBeExecuted: function (label) {
       this.shouldNotBeExecuted.push(label);
@@ -473,8 +473,8 @@ prismEvalTest.codeShouldNotBeExecuted("will not be reached (in html)");
 <script>
   setTimeout(
       function() {
-        var expectedExecuted = 21;
         console.log("executed: " + prismEvalTest.executed.join("; "));
+        var expectedExecuted = 22;
         if (prismEvalTest.executed.length !== expectedExecuted) {
           console.error("executed " + prismEvalTest.executed.length + ", but expected " + expectedExecuted);
         }
