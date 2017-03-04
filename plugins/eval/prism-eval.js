@@ -172,8 +172,6 @@
 		}
 
 		debug("The element is setup to execute code");
-		//var preSrc = env.element.parentNode && env.element.parentNode.getAttribute("data-src");
-		//if (!preSrc) { // src in HTML
 		if (!env.code) {
 			warn("<code> element was setup to evaluate code mentioned in html, but there is no code.");
 			return;
