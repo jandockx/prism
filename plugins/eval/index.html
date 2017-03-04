@@ -71,8 +71,8 @@ code[class*="language"] {
 
 <pre data-eval="true"><code class="language-javascript"></code></pre>
 
-<p>An blank <code class="language-html">&lt;code&gt;</code> block is evaluated, but does nothing, as it
-	obviously contains no code. No code is valid code.</p>
+<p>A blank <code class="language-html">&lt;code&gt;</code> block (only contains whitespace) is evaluated, but does
+	 nothing, as it obviously contains no code. No code is valid code.</p>
 
 <pre data-eval="true"><code class="language-javascript">
 
@@ -122,7 +122,7 @@ prismEvalTest.codeShouldNotBeExecuted("data-eval not set");
 prismEvalTest.codeShouldNotBeExecuted("data-eval empty string");
 </code></pre>
 
-<p>Just having the attribute, without a value, is not enought either. This is not an HTML-boolean attribute.</p>
+<p>Just having the attribute, without a value, is not enough either. This is not an HTML-boolean attribute.</p>
 
 <pre data-eval><code class="language-javascript">
 prismEvalTest.codeShouldNotBeExecuted("data-eval attribute without a value");
@@ -196,7 +196,7 @@ prismEvalTest.codeShouldNotBeExecuted("data-eval twice empty");
 <p>By default, a <code class="language-html">&lt;div&gt;</code> element is added after the
   <code class="language-html">&lt;pre&gt;</code> block that shows all output from the element.
   Different output calls result in separate <code class="language-html">&lt;div&gt;</code> children
-  in the output tag. The result is shown if it is not <code class="language-javascript">undefined</code>.</p>
+  in the output tag.</p>
 
 <pre><code class="language-javascript" data-eval="true">
 Prism.eval.log("example block log");
@@ -204,7 +204,23 @@ Prism.eval.info("example block info");
 Prism.eval.warn("example block warn");
 Prism.eval.error("example block error");
 prismEvalTest.codeExecuted("block output");
+"this is not the result of this code block";
 "a result to show";
+</code></pre>
+
+<p>The result is shown if it is not <code class="language-javascript">undefined</code>.</p>
+
+<pre><code class="language-javascript" data-eval="true">
+Prism.eval.log("example block log");
+"this is not the result of this code block";
+undefined;
+</code></pre>
+
+<p>When there is no output, the output element is empty:</p>
+
+<pre><code class="language-javascript" data-eval="true">
+"this is not the result of this code block";
+undefined;
 </code></pre>
 
 <p>(Note that the <code class="language-javascript">Prism.eval.logLevel</code>
@@ -221,18 +237,31 @@ prismEvalTest.codeExecuted("block output");
   Prism.eval.info("example inline info");
   Prism.eval.warn("example inline warn");
   Prism.eval.error("example inline error");
-  prismEvalTest.codeExecuted("inline output");</code>.</p>
+  prismEvalTest.codeExecuted("inline output");
+	"this is not the result of this code block";
+	"a result to show";</code>.</p>
 
 <p>You can easily show the result of a JavaScript expression:
   <code class="language-javascript" data-eval="true">Object.keys(Prism.eval).join(", ")</code>.</p>
 </section>
 
+<p>The result is shown if it is not <code class="language-javascript">undefined</code>:
+  <code class="language-javascript" data-eval="true">Prism.eval.log("example block log");
+	"this is not the result of this code block";
+	undefined;
+	</code>.</p>
+
+<p>When there is no output, the output element is empty: <code class="language-javascript" data-eval="true">
+	"this is not the result of this code block";
+	undefined;
+	</code>.</p>
+
 <section>
 <h2>Directed output: <code class="language-html">data-output</code></h2>
 
-<p>If the <code class="language-html">&lt;code&gt;</code> block, or its parent, have an
+<p>If the <code class="language-html">&lt;code&gt;</code> block, or its parent, have a
   <code class="language-html">data-output</code> attribute, and an element is found in the page with
-  that <code class="language-html">id</code> in the page, that is used instead. The following output:</p>
+  that <code class="language-html">id</code>, that is used instead. The following output:</p>
 
 <div id="exampleDataOutput1"></div>
 
