@@ -29,7 +29,7 @@
 				return;
 			}
 			var labeledOutputElementId = outputElementId + "-" + label;
-			var labeledElement = document.getElementById(outputElementId + "-" + label);
+			var labeledElement = document.getElementById(labeledOutputElementId);
 			if (!labeledElement) {
 				warn("output asked in element with id \"" + labeledOutputElementId + "\", but no such element exists"
 					+ " (output: \"" + str + "\")");
